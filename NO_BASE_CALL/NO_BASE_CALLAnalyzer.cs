@@ -86,7 +86,7 @@ namespace NO_BASE_CALL
                         var stat = elem.Value;
                         if (stat.override_with_basecall * 100 > Threshold * stat.override_count)
                         {
-                            foreach (var method in stat.methods_without_base_call)
+                            foreach (var method in stat.methods_without_base_call.Distinct())
                             {
                                 var diagnostic = Diagnostic.Create(Rule, method.Locations[0], method.Name, basemethod.Name, Threshold, stat.override_with_basecall, stat.override_count);
                                 compilation_end.ReportDiagnostic(diagnostic);
